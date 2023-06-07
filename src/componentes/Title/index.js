@@ -1,9 +1,10 @@
-import {View,Text} from 'react-native'
+import {View,Text} from 'react-native';
+import { Heading } from 'native-base';
 import styles from './style'
 const Title = ({name})=>{
     return(
         <View style={styles.boxTitle}>
-            <Text style={styles.textTitle}>{name}</Text>
+            <Heading color="gray.100">{name}</Heading>            
         </View>
     )
 }

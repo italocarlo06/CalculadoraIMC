@@ -1,12 +1,23 @@
-import {View} from 'react-native'
+import {View} from 'react-native';
+import { useTheme, VStack, Image } from 'native-base';
 import Form from '../Form'
-import Title from '../Title'
+import { Header } from "../Header"
+
+const logo= require('../../../assets/logo.png');
+
 const Main = ()=>{
+    
+    const { colors } = useTheme()
     return(
-        <View>
-            <Title name='Calculadora'/>
+        <VStack bg={colors.gray[600]}  flex={1} alignItems="center">                   
+            <Header title={"Calculadora IMC"} />
+            <Image
+                source={{ uri: logo }}
+                width={50}
+                height={50}
+               />
             <Form/>
-        </View>
+        </VStack>
     )
 }
 
