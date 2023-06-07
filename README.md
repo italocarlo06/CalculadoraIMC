@@ -14,4 +14,4 @@ Agora, vamos instalar as dependências do projeto. Certifique-se de ter o Yarn i
 ***Passo 4: Executando o aplicativo***
 - Após a instalação das dependências, você pode executar o aplicativo. 
 - Certifique-se de ter um emulador Android ou iOS em execução ou um dispositivo físico conectado ou com o expo go instalado no seu dispositivo.
-- Execute um dos seguintes comandos, dependendo da plataforma desejada: ``` yarn android ```
+- Execute um dos seguintes comandos, dependendo da plataforma desejada: ```yarn expo start```
