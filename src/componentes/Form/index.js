@@ -1,36 +1,57 @@
-import { View} from 'react-native';
 import { useTheme, VStack, Icon } from 'native-base';
 import { Input } from "../Input";
-import { Button  } from "../Button";
+import { Button } from "../Button";
 import { Ruler, Scales } from 'phosphor-react-native';
+import { useState } from 'react';
 
-/*
-import { Ruler, Scales } from 'phosphor-react-native';
-InputLeftElement={<Icon as={<Scales color={colors.gray[300]} />} ml={4} />}
-                    InputLeftElement={<Icon as={<Ruler color={colors.gray[300]} />} ml={4} />}*/
 
-const Form = ()=>{    
+const Form = () => {
     const { colors } = useTheme();
-    return ( 
-        <VStack bg={"gray.600"} px={6} flex={1}  roundedTopLeft={"xl"} roundedTopRight={"xl"}>
-            <View >
-                
-                
-                <Input 
-                   placeholder="Altura" 
-                    mt={4}
-                    keyboardType='numeric'
-                    InputLeftElement={<Icon as={<Ruler color={colors.gray[300]} />} size={10} ml={4} />}
-                />
-                <Input 
-                   placeholder="Peso" 
-                    mt={4}
-                    keyboardType='numeric'
-                    InputLeftElement={<Icon as={<Scales color={colors.gray[300]} />} size={10} ml={4} />}
-                />                
-                                
-                <Button title='CALCULAR' mt={5}/>
-            </View>
+    const [altura, setAltura] = useState('');
+    const [peso, setPeso] = useState('');
+    const [resultado, setResultado] = useState(0);
+
+    const handleAlturaChange = (text) => {
+        const newAltura = text.replace(',', '.');
+        setAltura(newAltura)
+    }
+
+    const handlePesoChange = (text) => {
+        setPeso(text)
+
+    }
+
+    const handleResultadoIMC = () => {
+        if (parseFloat(altura) > 0) {
+            const valorAltura = parseFloat(altura);
+            const valorPeso = parseFloat(peso);
+
+            const calculoIMC = valorPeso / (valorAltura * valorAltura);
+            setResultado(calculoIMC);
+            alert(`O valor do IMC é ${calculoIMC.toFixed(2)}`)
+        }
+    }
+    return (
+        <VStack bg={"gray.600"} px={6} flex={1} >
+            <Input
+                placeholder="Altura"
+                mt={4}
+                keyboardType='decimal-pad'
+                InputLeftElement={<Icon as={<Ruler color={colors.gray[300]} />} size={10} ml={4} />}
+                w={"100%"}
+                onChangeText={handleAlturaChange}
+                value={altura.toString()}
+            />
+            <Input
+                placeholder="Peso"
+                mt={4}
+                keyboardType='decimal-pad'
+                InputLeftElement={<Icon as={<Scales color={colors.gray[300]} />} size={10} ml={4} />}
+                onChangeText={handlePesoChange}
+                value={peso.toString()}
+            />
+
+            <Button title='CALCULAR' mt={5} onPress={handleResultadoIMC} />
         </VStack>
     )
 }

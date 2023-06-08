@@ -1,24 +1,24 @@
-import {View} from 'react-native';
-import { useTheme, VStack, Image } from 'native-base';
+import { Image } from 'react-native';
+import { useTheme, VStack } from 'native-base';
 import Form from '../Form'
 import { Header } from "../Header"
 
-const logo= require('../../../assets/logo.png');
-
-const Main = ()=>{
-    
+const Main = () => {
     const { colors } = useTheme()
-    return(
-        <VStack bg={colors.gray[600]}  flex={1} alignItems="center">                   
+
+    return (
+
+        <VStack bg={colors.gray[600]} flex={1} alignItems="center" justifyContent={"center"} pt={24} >
             <Header title={"Calculadora IMC"} />
-            <Image
-                source={{ uri: logo }}
-                width={50}
-                height={50}
-               />
-            <Form/>
+            <Image source={require('../../../assets/logo.png')}
+                style={{
+                    width: 80,
+                    height: 80
+                }}
+            />
+            <Form />
         </VStack>
     )
 }
 
-export default  Main
+export default Main
